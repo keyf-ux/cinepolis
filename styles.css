@@ -1764,3 +1764,136 @@ img {
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
+
+/* ==========================================================================
+   PREVENCIÓN DE DESBORDAMIENTO GLOBAL & REJILLA DE ASIENTOS
+   ========================================================================== */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Envoltorio con scroll para la rejilla de asientos en pantallas muy pequeñas */
+.seats-grid-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Botón Hamburguesa (Oculto en Escritorio) */
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+/* Telón de fondo del menú desplegable */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 11, 20, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES PARA MÓVIL (PANTALLAS <= 768PX)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Muestra el botón hamburguesa en móvil */
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1002;
+  }
+
+  /* Oculta la selección de cine del Header en móvil para dejar espacio */
+  .header-utilities .select-wrapper {
+    display: none !important;
+  }
+
+  /* Alineación de la barra de herramientas del Header */
+  .header-utilities {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  /* Menú Principal transformado en Drawer lateral deslizable */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--navy-dark);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 1.8rem 2rem 1.8rem;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1001;
+  }
+
+  .main-nav.active {
+    right: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  .main-nav ul li {
+    width: 100%;
+  }
+
+  .main-nav ul li a {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .main-nav ul li a.active {
+    color: var(--yellow-accent);
+    border-bottom-color: var(--yellow-accent);
+  }
+
+  /* Ajustes de contenedores para evitar desbordamientos laterales */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .tab-nav {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+}
