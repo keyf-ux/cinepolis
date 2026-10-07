@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Compra Exitosa! | Cinépolis Perú</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <img src="cinepolis.logo.svg" alt="cinépolis" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span style="display:none; font-size:1.5rem; font-weight:900; color:#fff;">cinépolis</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="peliculas.html">Películas</a></li>
+          <li><a href="#">Cines</a></li>
+          <li><a href="#">Dulcería</a></li>
+          <li><a href="#">Cinépolis club</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utilities">
+        <button class="icon-btn" aria-label="Buscar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+        <button class="icon-btn" aria-label="Mi cuenta"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="confirmation-container">
+      <div class="success-icon-circle">
+        <svg class="icon-svg" viewBox="0 0 24 24" style="width: 36px; height: 36px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+
+      <h1 class="confirmation-title">¡Compra Exitosa!</h1>
+      <p class="confirmation-subtitle">
+        Tus boletos para <strong>Álbum de Familia</strong> han sido confirmados. Te hemos enviado un correo a juan.perez@ejemplo.com con tus entradas y el código QR.
+      </p>
+
+      <!-- TARJETA TICKET QR -->
+      <article class="ticket-qr-card">
+        <div class="qr-box">
+          <svg viewBox="0 0 100 100" fill="var(--navy-dark)">
+            <path d="M0,0 h30 v30 h-30 z M10,10 v10 h10 v-10 z M70,0 h30 v30 h-30 z M80,10 v10 h10 v-10 z M0,70 h30 v30 h-30 z M10,80 v10 h10 v-10 z M40,0 h20 v10 h-20 z M40,20 h10 v20 h-10 z M50,50 h30 v10 h-30 z M70,70 h30 v30 h-30 z M80,80 v10 h10 v-10 z M40,80 h20 v20 h-20 z"></path>
+          </svg>
+        </div>
+
+        <div class="ticket-info-details">
+          <span class="ticket-code">RESERVA #CT-09283</span>
+          <h2 class="ticket-movie-title">Álbum de Familia</h2>
+          <p class="ticket-venue">Cinépolis Larcomar</p>
+          <p class="ticket-meta-tag">Hoy, 15 May &nbsp;•&nbsp; 14:30 &nbsp;•&nbsp; Asientos: E7, E8</p>
+        </div>
+      </article>
+
+      <a href="index.html" class="btn-navy" style="display: inline-block; padding: 0.9rem 2.5rem; border-radius: 50px;">Volver al Inicio</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 CineTicket. Todos los derechos reservados.</p></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

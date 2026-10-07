@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hazte Socio | Cinépolis Perú</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <img src="cinepolis.logo.svg" alt="cinépolis" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span style="display:none; font-size:1.5rem; font-weight:900; color:#fff;">cinépolis</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="peliculas.html">Películas</a></li>
+          <li><a href="#">Cines</a></li>
+          <li><a href="#">Dulcería</a></li>
+          <li><a href="#" class="active">Cinépolis club</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utilities">
+        <button class="icon-btn" aria-label="Buscar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+        <button class="icon-btn" aria-label="Mi cuenta"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="register-container">
+      <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 0.4rem;">Hazte Socio</h1>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;">Únete a Club CineTicket y empieza a disfrutar de beneficios increíbles todos los días.</p>
+
+      <form class="modal-form" id="registerForm">
+        <div class="form-group" style="text-align: left;">
+          <label style="display:block; font-size:0.75rem; font-weight:800; margin-bottom:0.3rem; color:var(--navy-dark);">DNI o Documento de Identidad</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+            <input type="text" class="input-field" placeholder="Ej. 12345678" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+          <label style="display:block; font-size:0.75rem; font-weight:800; margin-bottom:0.3rem; color:var(--navy-dark);">Correo Electrónico</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+            <input type="email" class="input-field" placeholder="tu@correo.com" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="text-align: left;">
+          <label style="display:block; font-size:0.75rem; font-weight:800; margin-bottom:0.3rem; color:var(--navy-dark);">Contraseña</label>
+          <div class="input-with-icon">
+            <span class="input-icon"><svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+            <input type="password" class="input-field" placeholder="Mínimo 8 caracteres" required>
+          </div>
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="termsCheck" required>
+          <label for="termsCheck">He leído y acepto los <a href="#" style="color:var(--navy-dark); font-weight:700;">Términos y Condiciones</a> y la <a href="#" style="color:var(--navy-dark); font-weight:700;">Política de Privacidad</a> de Club CineTicket.</label>
+        </div>
+
+        <button type="submit" class="btn-pill-navy">Completar Registro</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom"><p>&copy; 2026 CineTicket. Todos los derechos reservados.</p></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

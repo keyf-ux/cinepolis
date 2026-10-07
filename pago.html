@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método de Pago | Cinépolis Perú</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <img src="cinepolis.logo.svg" alt="cinépolis" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span style="display:none; font-size:1.5rem; font-weight:900; color:#fff;">cinépolis</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="peliculas.html" class="active">Películas</a></li>
+          <li><a href="#">Cines</a></li>
+          <li><a href="#">Dulcería</a></li>
+          <li><a href="#">Cinépolis club</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utilities">
+        <button class="icon-btn" aria-label="Buscar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+        <button class="icon-btn" aria-label="Mi cuenta"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top: 2rem;">
+    <a href="asientos.html" class="back-link">
+      <svg class="icon-svg" viewBox="0 0 24 24" style="width: 16px; height: 16px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Volver a selección de asientos
+    </a>
+
+    <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--navy-dark);">Método de Pago</h1>
+
+    <div class="payment-layout">
+      <!-- MÉTODOS DE PAGO -->
+      <section>
+        <!-- Opción 1: Tarjeta -->
+        <article class="payment-method-card">
+          <div class="payment-method-header">
+            <div class="payment-method-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            </div>
+            <div class="payment-method-info">
+              <h3>Tarjeta de Crédito / Débito</h3>
+              <p>Pago seguro encriptado</p>
+            </div>
+          </div>
+
+          <form class="payment-form" action="confirmacion.html" method="GET">
+            <div class="form-group">
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">Número de Tarjeta</label>
+              <input type="text" class="input-field" placeholder="0000 0000 0000 0000" required>
+            </div>
+
+            <div class="form-group-row">
+              <div>
+                <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">Vencimiento</label>
+                <input type="text" class="input-field" placeholder="MM/AA" required>
+              </div>
+              <div>
+                <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">CVC</label>
+                <input type="text" class="input-field" placeholder="123" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="display:block; font-size:0.8rem; font-weight:700; margin-bottom:0.3rem;">Nombre en la tarjeta</label>
+              <input type="text" class="input-field" placeholder="Como aparece en la tarjeta" required>
+            </div>
+          </form>
+        </article>
+
+        <!-- Opción 2: Billeteras Electrónicas (Yape/Plin) -->
+        <article class="payment-method-card">
+          <div class="payment-method-header">
+            <div class="payment-method-icon">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 9V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><rect x="9" y="9" width="12" height="10" rx="2"></rect></svg>
+            </div>
+            <div class="payment-method-info">
+              <h3>Billeteras electrónicas</h3>
+              <p>Yape, Plin, Tunki, Sip</p>
+            </div>
+          </div>
+        </article>
+      </section>
+      
+      <!-- TARJETA AZUL TU COMPRA -->
+      <aside class="dark-summary-card">
+        <h3>Tu Compra</h3>
+        <div class="dark-summary-row">
+          <span>Boletos (2x)</span>
+          <span>S/ 170.00</span>
+        </div>
+        <div class="dark-summary-row">
+          <span>Cargo por servicio</span>
+          <span>S/ 15.00</span>
+        </div>
+        <div class="dark-summary-row total">
+          <span>Total a pagar</span>
+          <span class="total-amount">S/ 185.00</span>
+        </div>
+
+        <a href="confirmacion.html" class="btn-white-pay">Pagar S/ 185.00</a>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 style="color:#fff; font-size:1.4rem; margin-bottom:0.5rem;">cinépolis</h3>
+          <p>La mejor experiencia de cine, ahora a un clic de distancia.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul>
+            <li><a href="peliculas.html">Películas</a></li>
+            <li><a href="#">Próximos Estrenos</a></li>
+            <li><a href="#">Cines</a></li>
+            <li><a href="#">Dulcería</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Aviso de Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>¿Quiénes Somos?</h4>
+          <ul>
+            <li><a href="#">Corporativo</a></li>
+            <li><a href="#">Únete al equipo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li>soporte@cineticket.com</li>
+            <li>01 800 CINE 123</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 CineTicket. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
