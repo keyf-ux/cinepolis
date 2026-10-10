@@ -101,59 +101,59 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.carousel-slide'); //
   const dots = document.querySelectorAll('.dot'); //
   if (slides.length > 0) {
-    let currentSlide = 0; //[cite: 7]
-    const intervalTime = 5000; //[cite: 7]
+    let currentSlide = 0;
+    const intervalTime = 5000; 
 
     function goToSlide(index) {
-      slides.forEach(s => s.classList.remove('active')); //[cite: 7]
-      dots.forEach(d => d.classList.remove('active')); //[cite: 7]
-      currentSlide = (index + slides.length) % slides.length; //[cite: 7]
-      slides[currentSlide].classList.add('active'); //[cite: 7]
-      if (dots[currentSlide]) dots[currentSlide].classList.add('active'); //[cite: 7]
+      slides.forEach(s => s.classList.remove('active')); 
+      dots.forEach(d => d.classList.remove('active'));
+      currentSlide = (index + slides.length) % slides.length; 
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
     }
 
-    let slideTimer = setInterval(() => goToSlide(currentSlide + 1), intervalTime); //[cite: 7]
+    let slideTimer = setInterval(() => goToSlide(currentSlide + 1), intervalTime);
 
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        clearInterval(slideTimer); //[cite: 7]
-        goToSlide(idx); //[cite: 7]
-        slideTimer = setInterval(() => goToSlide(currentSlide + 1), intervalTime); //[cite: 7]
+        clearInterval(slideTimer); 
+        goToSlide(idx); 
+        slideTimer = setInterval(() => goToSlide(currentSlide + 1), intervalTime);
       });
     });
   }
 
-  // Pestañas (Cartelera / Próximos estrenos)[cite: 7]
-  const tabBtns = document.querySelectorAll('.tab-btn'); //[cite: 7]
+  // Pestañas (Cartelera / Próximos estrenos)
+  const tabBtns = document.querySelectorAll('.tab-btn'); 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active')); //[cite: 7]
-      btn.classList.add('active'); //[cite: 7]
+      tabBtns.forEach(b => b.classList.remove('active')); 
+      btn.classList.add('active'); 
 
-      const targetTab = btn.dataset.tab; //[cite: 7]
+      const targetTab = btn.dataset.tab; 
       document.querySelectorAll('.movie-card').forEach(card => {
-        if (targetTab === 'all' || card.dataset.category === targetTab) { //[cite: 7]
-          card.classList.remove('hidden'); //[cite: 7]
+        if (targetTab === 'all' || card.dataset.category === targetTab) { 
+          card.classList.remove('hidden'); 
         } else {
-          card.classList.add('hidden'); //[cite: 7]
+          card.classList.add('hidden'); 
         }
       });
     });
   });
 
-  // Filtro Rápido en Inicio[cite: 7]
-  const quickFilterForm = document.getElementById('quickFilterForm'); //[cite: 7]
+  // Filtro Rápido en Inicio
+  const quickFilterForm = document.getElementById('quickFilterForm'); 
   if (quickFilterForm) {
     quickFilterForm.addEventListener('submit', (e) => {
-      e.preventDefault(); //[cite: 7]
-      const movieVal = document.getElementById('filterMovie')?.value.toLowerCase() || ''; //[cite: 7]
-      const formatVal = document.getElementById('filterFormat')?.value.toLowerCase() || ''; //[cite: 7]
+      e.preventDefault(); 
+      const movieVal = document.getElementById('filterMovie')?.value.toLowerCase() || ''; 
+      const formatVal = document.getElementById('filterFormat')?.value.toLowerCase() || ''; 
 
       document.querySelectorAll('.movie-card').forEach(card => {
-        const title = card.querySelector('.movie-title')?.textContent.toLowerCase() || ''; //[cite: 7]
-        const meta = card.querySelector('.movie-meta')?.textContent.toLowerCase() || ''; //[cite: 7]
-        const matchMovie = !movieVal || title.includes(movieVal); //[cite: 7]
-        const matchFormat = !formatVal || meta.includes(formatVal); //[cite: 7]
+        const title = card.querySelector('.movie-title')?.textContent.toLowerCase() || ''; 
+        const meta = card.querySelector('.movie-meta')?.textContent.toLowerCase() || ''; 
+        const matchMovie = !movieVal || title.includes(movieVal); 
+        const matchFormat = !formatVal || meta.includes(formatVal); 
 
         card.classList.toggle('hidden', !(matchMovie && matchFormat)); //[cite: 7]
       });
@@ -392,10 +392,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------------------------------
      7. SELECCIÓN DE ASIENTOS CON RESPONSIVIDAD Y PRECIOS EN SOLES (S/)
      -------------------------------------------------------------------------- */
-  const seatsGrid = document.getElementById('seatsGrid'); //[cite: 7]
-  const ticketCount = document.getElementById('ticketCount'); //[cite: 7]
-  const selectedSeatsList = document.getElementById('selectedSeatsList'); //[cite: 7]
-  const totalPrice = document.getElementById('totalPrice'); //[cite: 7]
+  const seatsGrid = document.getElementById('seatsGrid'); 
+  const ticketCount = document.getElementById('ticketCount'); 
+  const selectedSeatsList = document.getElementById('selectedSeatsList'); 
+  const totalPrice = document.getElementById('totalPrice'); 
 
   if (seatsGrid) {
     // Envolver seatsGrid en un contenedor con overflow suave para móviles
@@ -406,24 +406,24 @@ document.addEventListener('DOMContentLoaded', () => {
       wrapper.appendChild(seatsGrid);
     }
 
-    const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']; //[cite: 7]
-    const seatsPerRow = 14; //[cite: 7]
-    const ticketUnitPrice = 85.00; // Precio unitario por entrada en S/[cite: 7]
-    const occupiedSeats = ['D4', 'D5', 'D6', 'D7', 'F5']; //[cite: 7]
+    const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']; 
+    const seatsPerRow = 22;
+    const ticketUnitPrice = 15.00; 
+    const occupiedSeats = ['D4', 'D5', 'D6', 'D7', 'F5']; 
 
-    let selectedSeats = []; //[cite: 7]
+    let selectedSeats = []; 
 
     rows.forEach(rowLabel => {
-      const rowDiv = document.createElement('div'); //[cite: 7]
-      rowDiv.className = 'seat-row'; //[cite: 7]
+      const rowDiv = document.createElement('div'); 
+      rowDiv.className = 'seat-row'; 
 
-      const labelLeft = document.createElement('span'); //[cite: 7]
-      labelLeft.className = 'row-label'; //[cite: 7]
-      labelLeft.textContent = rowLabel; //[cite: 7]
-      rowDiv.appendChild(labelLeft); //[cite: 7]
+      const labelLeft = document.createElement('span'); 
+      labelLeft.className = 'row-label'; 
+      labelLeft.textContent = rowLabel; 
+      rowDiv.appendChild(labelLeft);
 
-      const seatsList = document.createElement('div'); //[cite: 7]
-      seatsList.className = 'seats-list'; //[cite: 7]
+      const seatsList = document.createElement('div'); 
+      seatsList.className = 'seats-list'; 
 
       for (let i = 1; i <= seatsPerRow; i++) {
         const seatBtn = document.createElement('button'); //[cite: 7]
