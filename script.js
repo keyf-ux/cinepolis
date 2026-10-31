@@ -188,6 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------------------------------
      4. BUSCADOR GLOBAL DE PELÍCULAS EN TIEMPO REAL
      -------------------------------------------------------------------------- */
+  function getSVGPlaceholder(title) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+      <rect width="100%" height="100%" fill="#07132b"/>
+      <text x="50%" y="50%" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20" text-anchor="middle">${title}</text>
+    </svg>`;
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  }
+  
   const moviesCatalog = [
     {
       title: 'Álbum de Familia',
@@ -195,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: 'IMAX, 2D, 4DX',
       duration: '1h 34m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/1e293b/ffffff?text=Album+de+Familia'
+      image: 'posters/albumdefamilia.jpg'
     },
     {
       title: 'Código: Venganza',
@@ -203,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: 'IMAX, 2D, 4DX',
       duration: '1h 35m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/0f172a/ffffff?text=Codigo+Venganza'
+      image: 'posters/codigovenganza.jpg'
     },
     {
       title: 'Coyote vs Acme',
@@ -211,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: '2D, 3D',
       duration: '1h 41m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/334155/ffffff?text=Coyote+vs+Acme'
+      image: 'posters/coyotevsacme.jpg'
     },
     {
       title: 'Hechizo de amor: La magia continúa',
@@ -219,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: '2D',
       duration: '2h 10m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/475569/ffffff?text=Hechizo+de+Amor'
+      image: 'posters/hechizodeamor.jpg'
     },
     {
       title: 'La odisea',
@@ -227,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: 'IMAX, 3D, 4DX',
       duration: '1h 44m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/0284c7/ffffff?text=La+Odisea'
+      image: 'posters/laodisea.jpg'
     },
     {
       title: 'Flor Pucarina',
@@ -235,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
       format: '2D, 3D',
       duration: '1h 30m',
       url: 'pelicula_nombredepelicula.html',
-      image: 'https://via.placeholder.com/300x450/15803d/ffffff?text=Flor+Pucarina'
+      image: 'posters/flordepucarina.jpg'
     }
   ];
 
@@ -312,9 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateUserIconState() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     userAccountBtns.forEach(btn => {
-      btn.style.color = isLoggedIn ? 'var(--yellow-accent)' : '#ffffff';
-    });
-  }
+    btn.style.color = '#ffffff';
+  });
+}
 
   updateUserIconState();
 

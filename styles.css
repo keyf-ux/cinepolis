@@ -63,6 +63,9 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
+  position: relative;
+  z-index: 1002;
+  background-color: #07132b !important;
 }
 
 .header-container {
@@ -138,7 +141,12 @@ img {
 
 .icon-btn:hover {
   background-color: rgba(255, 255, 255, 0.12);
-  color: var(--yellow-accent);
+  color: var(--yellow-accent); 
+}
+
+.icon-btn:hover,
+.icon-btn:active {
+  color: var(--yellow-accent, #eab308) !important;
 }
 
 /* ==========================================================================
@@ -556,9 +564,9 @@ img {
    AJUSTES DE FILTROS EN SIDEBAR (PELICULAS.HTML)
    ========================================================================== */
 .catalog-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  display: flex;
   gap: 2rem;
+  align-items: flex-start;
   align-items: start;
   margin-top: 1.5rem;
 }
@@ -645,14 +653,20 @@ img {
   background: var(--card-bg);
   border-radius: var(--radius-md);
   padding: 1.8rem;
-  display: grid;
-  grid-template-columns: 200px 1fr;
+  display: flex;
   gap: 2rem;
+  align-items: flex-start;
   align-items: start;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
   margin-bottom: 2.5rem;
 }
+
+.movie-detail-card > div,
+  .catalog-layout > div {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
 
 .movie-detail-card .poster-wrapper {
   border-radius: var(--radius-sm);
@@ -705,17 +719,28 @@ img {
 }
 
 @media (max-width: 850px) {
+  .movie-detail-card,
   .catalog-layout {
-    grid-template-columns: 1fr;
-  }
-  .movie-detail-card {
-    grid-template-columns: 1fr;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
 }
+
+
 
 @media (max-width: 550px) {
   .catalog-grid {
     grid-template-columns: 1fr !important;
+  }
+  .movie-detail-card{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
   }
 }
 
@@ -780,6 +805,9 @@ img {
   border: 1px solid var(--border-color);
   margin-bottom: 2.5rem;
 }
+
+
+
 
 .poster-box {
   width: 100%;
@@ -889,17 +917,16 @@ img {
    PÁGINA: SELECCIÓN DE ASIENTOS (ASIENTOS.HTML)
    ========================================================================== */
 .seats-selection-layout {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 2.5rem;
-  align-items: start;
-  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Pantalla del Cine */
 .screen-container {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem !important;
   position: relative;
 }
 
@@ -922,12 +949,13 @@ img {
 
 /* Rejilla de Asientos */
 .seats-grid {
+  min-width: 580px !important;
+  width: max-content;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  align-items: center;
-  user-select: none;
-  margin-bottom: 2rem;
+  gap: 1rem !important;
+  margin-bottom: 2.5rem !important;
+  margin: 0 auto;
 }
 
 .seat-row {
@@ -946,12 +974,12 @@ img {
 
 .seats-list {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.50rem;
 }
 
 .seat {
-  width: 28px;
-  height: 28px;
+  width: 30px !important;
+  height: 30px !important;
   border-radius: 6px;
   border: none;
   cursor: pointer;
@@ -975,12 +1003,14 @@ img {
 
 /* Leyenda de Asientos */
 .seats-legend {
+ margin-top: 3rem !important;
+  padding-top: 2rem !important;
+  margin-bottom: 3rem !important;
+  border-top: 1px solid var(--border-color, #e2e8f0);
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .legend-item {
@@ -1732,12 +1762,13 @@ img {
 }
 
 .search-result-thumb {
-  width: 45px;
-  height: 65px;
-  border-radius: 4px;
+  width: 50px;
+  height: 72px;
+  border-radius: 6px;
   object-fit: cover;
-  background-color: #1e293b;
+  background-color: #07132b;
   flex-shrink: 0;
+  border: 1px solid #cbd5e1;
 }
 
 .search-result-info {
@@ -1775,10 +1806,14 @@ html, body {
 
 /* Envoltorio con scroll para la rejilla de asientos en pantallas muy pequeñas */
 .seats-grid-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
   -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0 1rem 0;
+  box-sizing: border-box;
+  touch-action: pan-x;
 }
 
 /* Botón Hamburguesa (Oculto en Escritorio) */
@@ -1795,9 +1830,10 @@ html, body {
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(5, 11, 20, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
+  background: rgba(7, 19, 43, 0.65) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  z-index: 999;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -1839,13 +1875,16 @@ html, body {
     right: -100%;
     width: 280px;
     height: 100vh;
-    background-color: var(--navy-dark);
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.4);
+    background-color: #07132b !important; /* Azul marino 100% sólido */
+    backdrop-filter: none !important;     /* Sin filtros borrosos */
+    -webkit-backdrop-filter: none !important;
+    opacity: 1 !important;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     padding: 5rem 1.8rem 2rem 1.8rem;
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
+    transition: right 0.3s ease;
+    z-index: 1000;
   }
 
   .main-nav.active {
@@ -1853,10 +1892,13 @@ html, body {
   }
 
   .main-nav ul {
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    align-items: flex-start !important;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
   .main-nav ul li {
@@ -1864,18 +1906,16 @@ html, body {
   }
 
   .main-nav ul li a {
-    display: block;
+    color: #ffffff !important;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #ffffff;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
+    text-decoration: none;
   }
 
   .main-nav ul li a.active {
     color: var(--yellow-accent);
     border-bottom-color: var(--yellow-accent);
+    padding-bottom: 0.2rem;
   }
 
   /* Ajustes de contenedores para evitar desbordamientos laterales */
