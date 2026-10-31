@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinépolis Perú | Cartelera</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <img src="cinepolis.logo.svg" alt="cinépolis" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span style="display:none; font-size:1.5rem; font-weight:900; color:#fff;">cinépolis</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="peliculas.html" class="active">Películas</a></li>
+          <li><a href="#">Cines</a></li>
+          <li><a href="#">Dulcería</a></li>
+          <li><a href="#">Cinépolis club</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utilities">
+        <div class="select-wrapper">
+          <select class="filter-control header-select" aria-label="Selecciona tu cine">
+            <option>Selecciona tu cine</option>
+            <option>Larcomar</option>
+            <option>Plaza Norte</option>
+            <option>Santa Anita</option>
+          </select>
+          <span class="select-arrow" style="color: white;">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+
+        <button class="icon-btn" aria-label="Buscar">
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+
+        <button class="icon-btn" aria-label="Mi cuenta">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN CATÁLOGO -->
+  <main class="container" style="margin-top: 2.5rem;">
+    <header class="section-header">
+      <h1 class="section-title">Películas</h1>
+      <ul class="tab-nav">
+        <li><button class="tab-btn active">En cartelera</button></li>
+        <li><button class="tab-btn">Preventa</button></li>
+        <li><button class="tab-btn">Próximos estrenos</button></li>
+      </ul>
+    </header>
+
+    <div class="catalog-layout">
+      <!-- FILTROS SIDEBAR -->
+      <aside class="sidebar-filters">
+        <h3>Filtrar por:</h3>
+        <form>
+          <div class="filter-group">
+            <label for="f-ciudad">Ciudad</label>
+            <div class="select-wrapper">
+              <select id="f-ciudad" class="filter-control">
+                <option value="">Todas</option>
+                <option>Lima</option>
+                <option>Arequipa</option>
+              </select>
+              <span class="select-arrow"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="f-cine">Cine</label>
+            <div class="select-wrapper">
+              <select id="f-cine" class="filter-control">
+                <option value="">Todos los cines</option>
+                <option>Cinépolis Larcomar</option>
+                <option>Cinépolis Plaza Norte</option>
+              </select>
+              <span class="select-arrow"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="f-fecha">Fecha</label>
+            <input type="date" id="f-fecha" class="filter-control">
+          </div>
+
+          <div class="filter-group">
+            <label for="f-genero">Género</label>
+            <div class="select-wrapper">
+              <select id="f-genero" class="filter-control">
+                <option value="">Todos</option>
+                <option>Drama</option>
+                <option>Acción</option>
+                <option>Animación</option>
+              </select>
+              <span class="select-arrow"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="f-idioma">Idioma</label>
+            <div class="select-wrapper">
+              <select id="f-idioma" class="filter-control">
+                <option value="">Todos</option>
+                <option>Subtitulada</option>
+                <option>Doblada</option>
+              </select>
+              <span class="select-arrow"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="f-formato">Formato</label>
+            <div class="select-wrapper">
+              <select id="f-formato" class="filter-control">
+                <option value="">Todos</option>
+                <option>IMAX</option>
+                <option>2D</option>
+                <option>4DX</option>
+              </select>
+              <span class="select-arrow"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            </div>
+          </div>
+        </form>
+      </aside>
+
+      <!-- REJILLA DE PELÍCULAS (3 COLUMNAS PERFECTAS) -->
+      <section class="catalog-grid">
+        <!-- Tarjeta 1 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/albumdefamilia.jpg" alt="Álbum de Familia">
+          </div>
+          <div class="card-content">
+            <div class="tag-list">
+              <span class="tag red">Estreno</span>
+              <span class="tag">Drama</span>
+            </div>
+            <h2 class="movie-title">Álbum de Familia</h2>
+            <p class="movie-meta">› IMAX, 2D, 4DX &nbsp;⏱ 1h 34m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/codigovenganza.jpg" alt="Código: Venganza">
+          </div>
+          <div class="card-content">
+            <div class="tag-list"><span class="tag">Acción</span></div>
+            <h2 class="movie-title">Código: Venganza</h2>
+            <p class="movie-meta">› IMAX, 2D, 4DX &nbsp;⏱ 1h 35m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/coyotevsacme.jpg" alt="Coyote vs Acme">
+          </div>
+          <div class="card-content">
+            <div class="tag-list">
+              <span class="tag">Animación</span>
+              <span class="tag">Familiar</span>
+            </div>
+            <h2 class="movie-title">Coyote vs Acme</h2>
+            <p class="movie-meta">› 2D, 3D &nbsp;⏱ 1h 41m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 4 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/hechizodeamor.jpg" alt="Hechizo de amor">
+          </div>
+          <div class="card-content">
+            <div class="tag-list">
+              <span class="tag">Fantasía</span>
+              <span class="tag">Drama</span>
+              <span class="tag">Romance</span>
+            </div>
+            <h2 class="movie-title">Hechizo de amor: La magia continúa</h2>
+            <p class="movie-meta">› 2D &nbsp;⏱ 2h 10m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 5 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/laodisea.jpg" alt="La Odisea">
+          </div>
+          <div class="card-content">
+            <div class="tag-list">
+              <span class="tag">Acción</span>
+              <span class="tag">Aventura</span>
+              <span class="tag">Fantasía</span>
+            </div>
+            <h2 class="movie-title">La odisea</h2>
+            <p class="movie-meta">› IMAX, 3D, 4DX &nbsp;⏱ 1h 44m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 6 -->
+        <article class="movie-card">
+          <div class="poster-wrapper">
+            <img src="posters/flordepucarina.jpg" alt="Flor Pucarina">
+          </div>
+          <div class="card-content">
+            <div class="tag-list">
+              <span class="tag">Documental</span>
+              <span class="tag">Musical</span>
+            </div>
+            <h2 class="movie-title">Flor Pucarina</h2>
+            <p class="movie-meta">› 2D, 3D &nbsp;⏱ 1h 30m</p>
+            <div class="card-actions">
+              <a href="pelicula_nombredepelicula.html" class="btn-navy">Comprar</a>
+              <a href="pelicula_nombredepelicula.html" class="btn-outline">Ver detalles</a>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 style="color:#fff; font-size:1.4rem; margin-bottom:0.5rem;">cinépolis</h3>
+          <p>La mejor experiencia de cine, ahora a un clic de distancia.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul>
+            <li><a href="peliculas.html">Películas</a></li>
+            <li><a href="#">Próximos Estrenos</a></li>
+            <li><a href="#">Cines</a></li>
+            <li><a href="#">Dulcería</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Aviso de Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>¿Quiénes Somos?</h4>
+          <ul>
+            <li><a href="#">Corporativo</a></li>
+            <li><a href="#">Únete al equipo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li>soporte@cineticket.com</li>
+            <li>01 800 CINE 123</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 CineTicket. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
