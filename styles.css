@@ -718,6 +718,36 @@ img {
   }
 }
 
+@media (min-width: 901px) {
+  /* Define una columna fija de 260px para el filtro y el resto para las películas */
+  .catalog-layout {
+    display: grid !important;
+    grid-template-columns: 260px 1fr !important;
+    gap: 2.5rem !important;
+    align-items: start !important;
+  }
+
+  /* Restringe el ancho máximo del contenedor del filtro */
+  .filters-sidebar,
+  .sidebar-filter,
+  .filters-card,
+  .catalog-sidebar,
+  .catalog-layout > div:first-child {
+    width: 100% !important;
+    max-width: 260px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Rejilla de películas fluida (3 o 4 tarjetas por fila en escritorio) */
+  .movies-grid,
+  .catalog-grid,
+  .catalog-layout > div:last-child {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+}
+
 @media (max-width: 850px) {
   .movie-detail-card,
   .catalog-layout {
