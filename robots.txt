@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /asientos.html
+Disallow: /pago.html
+Disallow: /confirmacion.html
+Disallow: /perfil.html
+Disallow: /registro.html
+Disallow: /posters/
+
+Sitemap: https://keyf-ux.github.io/cinepolis/sitemap.xml
