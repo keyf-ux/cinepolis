@@ -947,8 +947,12 @@ img {
    PÁGINA: SELECCIÓN DE ASIENTOS (ASIENTOS.HTML)
    ========================================================================== */
 .seats-selection-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   width: 100%;
-  max-width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -1361,6 +1365,28 @@ img {
   .seats-selection-layout,
   .payment-layout {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 901px) {
+  .seats-selection-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 360px !important; /* Mapa a la izquierda, Resumen a la derecha */
+    gap: 2.5rem !important;
+    align-items: start !important;
+  }
+
+  .seats-main-area {
+    width: 100%;
+    min-width: 0; /* Permite scroll interno fluido sin romper la columna */
+  }
+
+  .summary-card {
+    position: sticky;
+    top: 90px; /* Mantiene el resumen fijo en pantalla al hacer scroll */
+    width: 100% ;
+    max-width: 360px;
+    box-sizing: border-box !important;
   }
 }
 
