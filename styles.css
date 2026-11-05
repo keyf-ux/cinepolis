@@ -237,6 +237,45 @@ p,
   color: #ffffff !important; /* Blanco 100% (Ratio > 15:1 sobre azul marino) */
 }
 
+.hero-banner p, 
+.promo-banner p {
+  color: #ffffff !important;
+}
+
+/* 2. Restablecer el botón "Comprar" (Azul Marino sólido con texto blanco) */
+.movie-card .btn-primary,
+.movie-card .btn-buy,
+.movie-card a[href*="asientos"],
+.movie-card a[href*="pago"] {
+  background-color: #07132b !important;
+  color: #ffffff !important;
+  border: 1px solid #07132b !important;
+  padding: 0.55rem 1.1rem !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Restablecer el botón "Ver detalles" (Fondo blanco con borde oscuro) */
+.movie-card .btn-secondary,
+.movie-card .btn-outline,
+.movie-card .btn-details,
+.movie-card a[href*="pelicula_"] {
+  background-color: #ffffff !important;
+  color: #07132b !important;
+  border: 1px solid #07132b !important;
+  padding: 0.55rem 1.1rem !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
 .pricing-pills {
   display: flex;
   justify-content: center;
