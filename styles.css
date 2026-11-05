@@ -226,6 +226,17 @@ p,
   font-weight: 500;
 }
 
+.hero p,
+.banner p,
+.hero-banner p,
+.promo-banner p,
+.banner-content p,
+.movie-hero p,
+.navy-card p,
+.carousel-slide p {
+  color: #ffffff !important; /* Blanco 100% (Ratio > 15:1 sobre azul marino) */
+}
+
 .pricing-pills {
   display: flex;
   justify-content: center;
