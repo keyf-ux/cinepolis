@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selecciona tus butacas preferidas en tiempo real. Mapa de sala interactivo con precios transparentes en Soles (S/) para tu función en Cinépolis Perú.">
+  <title>Selección de Asientos | Cinépolis Perú</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER GLOBAL -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <img src="cinepolis.logo.svg" alt="Logo oficial de Cinépolis Perú" class="logo-img" width="160" height="32" fetchpriority="high" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span style="display:none; font-size:1.5rem; font-weight:900; color:#fff;">cinépolis</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="peliculas.html" class="active">Películas</a></li>
+          <li><a href="#">Cines</a></li>
+          <li><a href="#">Dulcería</a></li>
+          <li><a href="#">Cinépolis club</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-utilities">
+        <div class="select-wrapper">
+          <select class="filter-control header-select" aria-label="Selecciona tu cine">
+            <option>Selecciona tu cine</option>
+            <option>Larcomar</option>
+            <option>Plaza Norte</option>
+          </select>
+          <span class="select-arrow" style="color: white;">
+            <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+
+        <button class="icon-btn" aria-label="Buscar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+        <button class="icon-btn" id="openAuthModalHeader" aria-label="Mi cuenta"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top: 2rem;">
+    <a href="pelicula_nombredepelicula.html" class="back-link">
+      <svg class="icon-svg" viewBox="0 0 24 24" style="width: 16px; height: 16px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Volver a horarios
+    </a>
+
+    <div class="seats-selection-layout">
+      <!-- MAPA DE ASIENTOS -->
+      <section class="seats-main-area">
+        <div class="screen-container">
+          <div class="screen-curve"></div>
+          <span class="screen-text">P A N T A L L A</span>
+        </div>
+
+        <div class="seats-grid-wrapper">
+          <div class="seats-grid" id="seatsGrid"></div>
+        </div>
+
+        <div class="seats-legend">
+          <div class="legend-item"><span class="legend-box available"></span> Disponible</div>
+          <div class="legend-item"><span class="legend-box selected"></span> Seleccionado</div>
+          <div class="legend-item"><span class="legend-box occupied"></span> Ocupado</div>
+        </div>
+      </section>
+
+      <!-- RESUMEN DE LA RESERVA -->
+      <aside class="summary-card">
+        <h3>Resumen</h3>
+        <div class="summary-details">
+          <div class="summary-item">
+            <label>Película</label>
+            <p>Álbum de Familia</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="summary-item">
+              <label>Fecha</label>
+              <p>Hoy, 15 May</p>
+            </div>
+            <div class="summary-item">
+              <label>Hora</label>
+              <p>14:30</p>
+            </div>
+          </div>
+          <div class="summary-item">
+            <label>Cine</label>
+            <p>Cinépolis Larcomar</p>
+          </div>
+          <div class="summary-item">
+            <label>Boletos (<span id="ticketCount">0</span>)</label>
+            <p id="selectedSeatsList" style="color: var(--text-secondary);">Ninguno seleccionado</p>
+          </div>
+        </div>
+
+        <div class="summary-total-row">
+          <span>Total</span>
+          <span class="total-price" id="totalPrice">S/ 0.00</span>
+        </div>
+
+        <button type="button" class="btn-primary btn-disabled" id="btnContinuePay" style="width: 100%;">Continuar al pago</button>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 style="color:#fff; font-size:1.4rem; margin-bottom:0.5rem;">cinépolis</h3>
+          <p>La mejor experiencia de cine, ahora a un clic de distancia.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul>
+            <li><a href="peliculas.html">Películas</a></li>
+            <li><a href="#">Próximos Estrenos</a></li>
+            <li><a href="#">Cines</a></li>
+            <li><a href="#">Dulcería</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Aviso de Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>¿Quiénes Somos?</h4>
+          <ul>
+            <li><a href="#">Corporativo</a></li>
+            <li><a href="#">Únete al equipo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li>soporte@cineticket.com</li>
+            <li>01 800 CINE 123</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 CineTicket. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
