@@ -185,6 +185,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+// ==========================================================================
+// FILTROS DINÁMICOS DE CARTELERA Y PESTAÑAS DE ESTADO (script.js)
+// ==========================================================================
+const genreSelect = document.getElementById('genreFilter') || document.querySelector('select[name="genre"]');
+  const formatSelect = document.getElementById('formatFilter') || document.querySelector('select[name="format"]');
+  const tabButtons = document.querySelectorAll('.tab-btn, .nav-tab, .catalog-tabs button');
+  const movieCards = document.querySelectorAll('.movie-card, .catalog-card');
+
+  // Estado inicial de la pestaña activa (por defecto: 'en-cartelera')
+  let activeStatus = 'en-cartelera';
+
+  /**
+   * Función que evalúa y aplica todos los filtros activos sobre las películas
+   */
+  function filterMovies() {
+    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'todos';
+    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'todos';
+
+    movieCards.forEach(card => {
+      // Leer atributos de datos configurados en cada tarjeta HTML
+      const cardGenre = (card.dataset.genre || '').toLowerCase();
+      const cardFormat = (card.dataset.format || '').toLowerCase();
+      const cardStatus = (card.dataset.status || 'en-cartelera').toLowerCase();
+
+      // Evaluar si la película cumple con cada criterio
+      const matchGenre = selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre);
+      const matchFormat = selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat);
+      const matchStatus = activeStatus === 'todos' || cardStatus === activeStatus;
+
+      // Mostrar la tarjeta si cumple TODOS los criterios, o de lo contrario ocultarla
+      if (matchGenre && matchFormat && matchStatus) {
+        card.style.display = 'flex';
+        card.style.opacity = '1';
+      } else {
+        card.style.display = 'none';
+        card.style.opacity = '0';
+      }
+    });
+  }
+
+  // 1. Escuchar cambios en los selectores desplegables
+  if (genreSelect) {
+    genreSelect.addEventListener('change', filterMovies);
+  }
+  
+  if (formatSelect) {
+    formatSelect.addEventListener('change', filterMovies);
+  }
+
+  // 2. Escuchar clics en las pestañas ("En cartelera", "Preventa", "Próximos estrenos")
+  tabButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Alternar clase activa visual
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Determinar la categoría según el atributo data-status o el texto del botón
+      const rawStatus = button.dataset.status || button.textContent.trim().toLowerCase();
+      
+      if (rawStatus.includes('preventa')) {
+        activeStatus = 'preventa';
+      } else if (rawStatus.includes('próximos') || rawStatus.includes('estrenos')) {
+        activeStatus = 'proximos-estrenos';
+      } else {
+        activeStatus = 'en-cartelera';
+      }
+
+      filterMovies();
+    });
+  });
+
+  // Ejecutar una primera filtración al cargar la página
+  filterMovies();
+});
+
+  
   /* --------------------------------------------------------------------------
      4. BUSCADOR GLOBAL DE PELÍCULAS EN TIEMPO REAL
      -------------------------------------------------------------------------- */
