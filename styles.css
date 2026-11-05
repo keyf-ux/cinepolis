@@ -486,9 +486,9 @@ p,
 }
 
 .btn-navy {
-  background-color: var(--blue-primary);
-  color: #ffffff;
-  border: none;
+   background-color: #07132b !important; /* Azul marino sólido */
+  color: #ffffff !important;             /* Texto blanco alto contraste (16.5:1 WCAG) */
+  border: 1.5px solid #07132b !important;
   padding: 0.55rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -498,9 +498,9 @@ p,
 }
 
 .btn-outline {
+  color: #07132b !important;             /* Texto azul marino de alto contraste */
+  border: 1.5px solid #07132b !important;
   background: transparent;
-  color: var(--blue-primary);
-  border: 1px solid var(--blue-primary);
   padding: 0.55rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -511,7 +511,9 @@ p,
 }
 
 .btn-outline:hover {
-  background-color: rgba(0, 43, 122, 0.06);
+  background-color: #f1f5f9 !important; /* Sombreado suave en hover */
+  color: #07132b !important;
+  border-color: #07132b !important;
 }
 
 .center-btn-wrapper {
