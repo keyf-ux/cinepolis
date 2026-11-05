@@ -124,19 +124,60 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Pestañas (Cartelera / Próximos estrenos)
-  const tabBtns = document.querySelectorAll('.tab-btn'); 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active')); 
-      btn.classList.add('active'); 
+  // Selectores de controles
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const genreSelect = document.getElementById('filterGenre') || document.querySelector('select[name="genre"]');
+  const formatSelect = document.getElementById('filterFormat') || document.querySelector('select[name="format"]');
+  const movieCards = document.querySelectorAll('.movie-card');
 
-      const targetTab = btn.dataset.tab; 
-      document.querySelectorAll('.movie-card').forEach(card => {
-        if (targetTab === 'all' || card.dataset.category === targetTab) { 
-          card.classList.remove('hidden'); 
-        } else {
-          card.classList.add('hidden'); 
-        }
+  // Estado inicial de la pestaña activa (por defecto 'all')
+  let activeTab = 'all';
+
+  // Función principal de filtrado combinado
+  function applyFilters() {
+    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'all';
+    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'all';
+
+    movieCards.forEach(card => {
+      // Obtener data-attributes de cada tarjeta
+      const cardCategory = (card.dataset.category || '').toLowerCase().trim();
+      const cardGenre = (card.dataset.genre || '').toLowerCase().trim();
+      const cardFormat = (card.dataset.format || '').toLowerCase().trim();
+
+      // Validación de Criterios
+      const matchTab = (activeTab === 'all' || activeTab === 'todos' || cardCategory === activeTab);
+      const matchGenre = (selectedGenre === 'all' || selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre));
+      const matchFormat = (selectedFormat === 'all' || selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat));
+
+      // Si cumple la pestaña Y los filtros de desplegable, se muestra
+      if (matchTab && matchGenre && matchFormat) {
+        card.classList.remove('hidden');
+        card.style.display = ''; // Mantiene el layout flex/grid CSS
+      } else {
+        card.classList.add('hidden');
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Evento Clic en Pestañas (Cartelera / Preventa / Próximos estrenos)
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      activeTab = btn.dataset.tab ? btn.dataset.tab.toLowerCase().trim() : 'all';
+      applyFilters();
+    });
+  });
+
+  // Eventos Change en Filtros Desplegables
+  if (genreSelect) genreSelect.addEventListener('change', applyFilters);
+  if (formatSelect) formatSelect.addEventListener('change', applyFilters);
+
+  // Ejecución inicial al cargar la página
+  applyFilters();
       });
     });
   });
@@ -184,83 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-// ==========================================================================
-// FILTROS DINÁMICOS DE CARTELERA Y PESTAÑAS DE ESTADO (script.js)
-// ==========================================================================
-const genreSelect = document.getElementById('genreFilter') || document.querySelector('select[name="genre"]');
-  const formatSelect = document.getElementById('formatFilter') || document.querySelector('select[name="format"]');
-  const tabButtons = document.querySelectorAll('.tab-btn, .nav-tab, .catalog-tabs button');
-  const movieCards = document.querySelectorAll('.movie-card, .catalog-card');
-
-  // Estado inicial de la pestaña activa (por defecto: 'en-cartelera')
-  let activeStatus = 'en-cartelera';
-
-  /**
-   * Función que evalúa y aplica todos los filtros activos sobre las películas
-   */
-  function filterMovies() {
-    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'todos';
-    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'todos';
-
-    movieCards.forEach(card => {
-      // Leer atributos de datos configurados en cada tarjeta HTML
-      const cardGenre = (card.dataset.genre || '').toLowerCase();
-      const cardFormat = (card.dataset.format || '').toLowerCase();
-      const cardStatus = (card.dataset.status || 'en-cartelera').toLowerCase();
-
-      // Evaluar si la película cumple con cada criterio
-      const matchGenre = selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre);
-      const matchFormat = selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat);
-      const matchStatus = activeStatus === 'todos' || cardStatus === activeStatus;
-
-      // Mostrar la tarjeta si cumple TODOS los criterios, o de lo contrario ocultarla
-      if (matchGenre && matchFormat && matchStatus) {
-        card.style.display = 'flex';
-        card.style.opacity = '1';
-      } else {
-        card.style.display = 'none';
-        card.style.opacity = '0';
-      }
-    });
-  }
-
-  // 1. Escuchar cambios en los selectores desplegables
-  if (genreSelect) {
-    genreSelect.addEventListener('change', filterMovies);
-  }
-  
-  if (formatSelect) {
-    formatSelect.addEventListener('change', filterMovies);
-  }
-
-  // 2. Escuchar clics en las pestañas ("En cartelera", "Preventa", "Próximos estrenos")
-  tabButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      // Alternar clase activa visual
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      // Determinar la categoría según el atributo data-status o el texto del botón
-      const rawStatus = button.dataset.status || button.textContent.trim().toLowerCase();
-      
-      if (rawStatus.includes('preventa')) {
-        activeStatus = 'preventa';
-      } else if (rawStatus.includes('próximos') || rawStatus.includes('estrenos')) {
-        activeStatus = 'proximos-estrenos';
-      } else {
-        activeStatus = 'en-cartelera';
-      }
-
-      filterMovies();
-    });
-  });
-
-  // Ejecutar una primera filtración al cargar la página
-  filterMovies();
-});
 
   
   /* --------------------------------------------------------------------------
