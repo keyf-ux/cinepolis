@@ -123,118 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Pestañas (Cartelera / Próximos estrenos)
-  // Selectores de controles
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const genreSelect = document.getElementById('filterGenre') || document.querySelector('select[name="genre"]');
-  const formatSelect = document.getElementById('filterFormat') || document.querySelector('select[name="format"]');
-  const movieCards = document.querySelectorAll('.movie-card');
-
-  // Estado inicial de la pestaña activa (por defecto 'all')
-  let activeTab = 'all';
-
-  // Función principal de filtrado combinado
-  function applyFilters() {
-    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'all';
-    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'all';
-
-    movieCards.forEach(card => {
-      // Obtener data-attributes de cada tarjeta
-      const cardCategory = (card.dataset.category || '').toLowerCase().trim();
-      const cardGenre = (card.dataset.genre || '').toLowerCase().trim();
-      const cardFormat = (card.dataset.format || '').toLowerCase().trim();
-
-      // Validación de Criterios
-      const matchTab = (activeTab === 'all' || activeTab === 'todos' || cardCategory === activeTab);
-      const matchGenre = (selectedGenre === 'all' || selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre));
-      const matchFormat = (selectedFormat === 'all' || selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat));
-
-      // Si cumple la pestaña Y los filtros de desplegable, se muestra
-      if (matchTab && matchGenre && matchFormat) {
-        card.classList.remove('hidden');
-        card.style.display = ''; // Mantiene el layout flex/grid CSS
-      } else {
-        card.classList.add('hidden');
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  // Evento Clic en Pestañas (Cartelera / Preventa / Próximos estrenos)
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      activeTab = btn.dataset.tab ? btn.dataset.tab.toLowerCase().trim() : 'all';
-      applyFilters();
-    });
-  });
-
-  // Eventos Change en Filtros Desplegables
-  if (genreSelect) genreSelect.addEventListener('change', applyFilters);
-  if (formatSelect) formatSelect.addEventListener('change', applyFilters);
-
-  // Ejecución inicial al cargar la página
-  applyFilters();
-      });
-    });
-  });
-
-  // Filtro Rápido en Inicio
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const genreSelect = document.getElementById('filterGenre') || document.querySelector('select[name="genre"]');
-  const formatSelect = document.getElementById('filterFormat') || document.querySelector('select[name="format"]');
-  const movieCards = document.querySelectorAll('.movie-card');
-
-  // Estado inicial de la pestaña seleccionada ('all' muestra todo)
-  let activeTab = 'all';
-
-  // 2. Función unificada de filtrado
-  function applyFilters() {
-    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'all';
-    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'all';
-
-    movieCards.forEach(card => {
-      // Atributos leídos de cada tarjeta HTML
-      const cardCategory = (card.dataset.category || '').toLowerCase().trim();
-      const cardGenre = (card.dataset.genre || '').toLowerCase().trim();
-      const cardFormat = (card.dataset.format || '').toLowerCase().trim();
-
-      // Validación de coincidencia para cada filtro
-      const matchTab = (activeTab === 'all' || activeTab === 'todos' || cardCategory === activeTab);
-      const matchGenre = (selectedGenre === 'all' || selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre));
-      const matchFormat = (selectedFormat === 'all' || selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat));
-
-      // Mostrar u ocultar la película según el resultado
-      if (matchTab && matchGenre && matchFormat) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
-
-  // 3. Evento para los clics en Pestañas (Cartelera / Preventa / Próximos)
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      activeTab = btn.dataset.tab ? btn.dataset.tab.toLowerCase().trim() : 'all';
-      applyFilters();
-    });
-  });
-
-  // 4. Eventos para los selectores desplegables de Género y Formato
-  if (genreSelect) genreSelect.addEventListener('change', applyFilters);
-  if (formatSelect) formatSelect.addEventListener('change', applyFilters);
-
-  // Ejecución inicial al cargar la página
-  applyFilters();
-});
 
   /* --------------------------------------------------------------------------
      3. MENÚ HAMBURGUESA MÓVIL
@@ -565,4 +453,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+});
+
+// Pestañas (Cartelera / Preventa / Próximos estrenos)
+document.addEventListener('DOMContentLoaded', () => {
+  const tabBtns = document.querySelectorAll('.tab-btn'); 
+  const movieCards = document.querySelectorAll('.movie-card');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabBtns.forEach(b => b.classList.remove('active')); 
+      btn.classList.add('active'); 
+
+      const targetTab = btn.dataset.tab; 
+
+      movieCards.forEach(card => {
+        if (targetTab === 'all' || card.dataset.category === targetTab) { 
+          card.classList.remove('hidden'); 
+        } else {
+          card.classList.add('hidden'); 
+        }
+      });
+    });
+  });
 });
