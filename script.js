@@ -183,23 +183,58 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Filtro Rápido en Inicio
-  const quickFilterForm = document.getElementById('quickFilterForm'); 
-  if (quickFilterForm) {
-    quickFilterForm.addEventListener('submit', (e) => {
-      e.preventDefault(); 
-      const movieVal = document.getElementById('filterMovie')?.value.toLowerCase() || ''; 
-      const formatVal = document.getElementById('filterFormat')?.value.toLowerCase() || ''; 
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const genreSelect = document.getElementById('filterGenre') || document.querySelector('select[name="genre"]');
+  const formatSelect = document.getElementById('filterFormat') || document.querySelector('select[name="format"]');
+  const movieCards = document.querySelectorAll('.movie-card');
 
-      document.querySelectorAll('.movie-card').forEach(card => {
-        const title = card.querySelector('.movie-title')?.textContent.toLowerCase() || ''; 
-        const meta = card.querySelector('.movie-meta')?.textContent.toLowerCase() || ''; 
-        const matchMovie = !movieVal || title.includes(movieVal); 
-        const matchFormat = !formatVal || meta.includes(formatVal); 
+  // Estado inicial de la pestaña seleccionada ('all' muestra todo)
+  let activeTab = 'all';
 
-        card.classList.toggle('hidden', !(matchMovie && matchFormat)); //[cite: 7]
-      });
+  // 2. Función unificada de filtrado
+  function applyFilters() {
+    const selectedGenre = genreSelect ? genreSelect.value.toLowerCase().trim() : 'all';
+    const selectedFormat = formatSelect ? formatSelect.value.toLowerCase().trim() : 'all';
+
+    movieCards.forEach(card => {
+      // Atributos leídos de cada tarjeta HTML
+      const cardCategory = (card.dataset.category || '').toLowerCase().trim();
+      const cardGenre = (card.dataset.genre || '').toLowerCase().trim();
+      const cardFormat = (card.dataset.format || '').toLowerCase().trim();
+
+      // Validación de coincidencia para cada filtro
+      const matchTab = (activeTab === 'all' || activeTab === 'todos' || cardCategory === activeTab);
+      const matchGenre = (selectedGenre === 'all' || selectedGenre === 'todos' || selectedGenre === 'todas' || cardGenre.includes(selectedGenre));
+      const matchFormat = (selectedFormat === 'all' || selectedFormat === 'todos' || selectedFormat === 'todas' || cardFormat.includes(selectedFormat));
+
+      // Mostrar u ocultar la película según el resultado
+      if (matchTab && matchGenre && matchFormat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
     });
   }
+
+  // 3. Evento para los clics en Pestañas (Cartelera / Preventa / Próximos)
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      activeTab = btn.dataset.tab ? btn.dataset.tab.toLowerCase().trim() : 'all';
+      applyFilters();
+    });
+  });
+
+  // 4. Eventos para los selectores desplegables de Género y Formato
+  if (genreSelect) genreSelect.addEventListener('change', applyFilters);
+  if (formatSelect) formatSelect.addEventListener('change', applyFilters);
+
+  // Ejecución inicial al cargar la página
+  applyFilters();
+});
 
   /* --------------------------------------------------------------------------
      3. MENÚ HAMBURGUESA MÓVIL
