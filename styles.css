@@ -2,17 +2,17 @@
    VARIABLES Y CONFIGURACIÓN GENERAL
    ========================================================================== */
 :root {
-  --navy-dark: #07132b;
-  --navy-medium: #0f2552;
-  --blue-primary: #002b7a;
-  --blue-hover: #001f59;
-  --yellow-accent: #ffc700;
-  --yellow-hover: #e0af00;
+   --navy-dark: #07132b;          /* Fondo primario de header y menú */
+  --navy-light: #1e293b;         /* Fondo secundario de elevado contraste */
+  --yellow-accent: #eab308;      /* Color de acento amarillo */
+  --yellow-hover: #ca8a04;
   --bg-light: #f8fafc;
   --card-bg: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --border-color: #e2e8f0;
+  --text-primary: #0f172a;       /* Slate 900 - Ratio 15.8:1 sobre blanco */
+  --text-secondary: #334155;     /* Slate 700 - Ratio 9.5:1 sobre blanco (reemplaza a #64748b) */
+  --text-muted: #475569;         /* Slate 600 - Ratio 7.0:1 sobre blanco (reemplaza a #94a3b8) */
+  --text-on-dark: #ffffff;
+  --border-color: #94a3b8;
   --tag-red: #d32f2f;
   --tag-bg: #f1f5f9;
   --radius-sm: 8px;
@@ -38,8 +38,19 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
+   color: #0284c7;
   transition: var(--transition);
+}
+
+a:hover {
+  color: #0369a1;
+}
+
+button:focus-visible, 
+a:focus-visible, 
+input:focus-visible {
+  outline: 3px solid var(--yellow-accent) !important;
+  outline-offset: 2px;
 }
 
 img {
@@ -204,6 +215,17 @@ img {
   color: #f1f5f9;
 }
 
+p, 
+.search-result-meta, 
+.movie-meta, 
+.modal-subtitle, 
+.row-label, 
+.seat-legend span,
+.summary-item-label {
+  color: var(--text-secondary) !important; /* #334155 */
+  font-weight: 500;
+}
+
 .pricing-pills {
   display: flex;
   justify-content: center;
@@ -325,6 +347,21 @@ img {
 
 .btn-primary:hover {
   background-color: var(--yellow-hover) !important;
+   color: #ffffff !important;
+}
+ 
+.btn-pill-yellow,
+.btn-yellow {
+  background-color: var(--yellow-accent);
+  color: #07132b !important; /* Texto oscuro de alto contraste */
+  font-weight: 700;
+  border: none;
+}
+
+.btn-pill-yellow:hover,
+.btn-yellow:hover {
+  background-color: var(--yellow-hover);
+  color: #ffffff !important;
 }
 
 /* ==========================================================================
@@ -693,23 +730,32 @@ img {
 }
 
 .time-pill {
-  border: 1px solid var(--border-color);
   padding: 0.55rem 1.1rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
-  font-weight: 700;
-  background-color: #ffffff;
-  color: var(--blue-primary);
   cursor: pointer;
   transition: var(--transition);
   outline: none;
 }
 
+.time-pill, 
+.format-btn {
+  background-color: #f8fafc;
+  color: #07132b !important; /* Texto visible */
+  border: 1px solid #94a3b8 !important; /* Borde visible */
+  font-weight: 700;
+}
 .time-pill:hover {
   border-color: var(--blue-primary);
-  background-color: rgba(0, 43, 122, 0.08);
   transform: translateY(-2px);
 }
+
+.time-pill:hover, 
+.format-btn:hover {
+  background-color: var(--navy-dark);
+  color: #ffffff !important;
+}
+
 
 /* Media Queries para Responsive */
 @media (max-width: 1100px) {
@@ -1130,6 +1176,15 @@ img {
   color: #94a3b8 !important;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.btn-disabled, 
+button:disabled {
+  background-color: #e2e8f0 !important;
+  color: #475569 !important; /* Texto gris oscuro legible */
+  border: 1px solid #cbd5e1 !important;
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 /* ==========================================================================
