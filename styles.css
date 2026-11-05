@@ -524,7 +524,7 @@ p,
 /* SECCIÓN FULL WIDTH CLUB CINÉPOLIS */
 .club-section-full {
   width: 100%;
-  background: linear-gradient(135deg, var(--blue-primary) 0%, var(--navy-dark) 100%);
+  background: #07132b;
   color: #ffffff;
   padding: 3.5rem 0;
   margin: 4rem 0 -4rem 0;
